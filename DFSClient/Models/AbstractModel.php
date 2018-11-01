@@ -188,7 +188,7 @@ abstract class AbstractModel
 
 
     /**
-     * Array contains this objects
+     * Array contains these objects
      *
      * @param iterable $pool
      */

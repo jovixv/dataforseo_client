@@ -28,9 +28,6 @@
         "psr-4": {
             "DFSClient\\": "DFSClient/"
         }
-    },
-    "require-dev": {
-        "symfony/var-dumper": "^4.1"
     }
 
 }

@@ -7,7 +7,7 @@ $DFSClient = new DFSClient();
 
 $model = $DFSClient->kwrd_sv; // kwrd_sv  - is model, we do request to this apiPoint;
 
-// it is request to api, when you run SETOPT working "magic method __call", also method get will return Iterable object "ResponseCollection"
+// it is request to api, when you write SETOPT working "magic method __call", also method get will return Iterable object "ResponseCollection"
 // method get() will be run request
 $completed = $model::setOpt('key','call of duty')
     ->setOpt('loc_name_canonical','United States')

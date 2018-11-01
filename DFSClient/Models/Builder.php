@@ -39,7 +39,7 @@ class Builder
 
         list($field,$value) = $arg;
         if (!isset($field) OR !is_string($field))
-            throw new ModelException('setOpt can\'t be empty OR Field must be a string, if you need set post id, you must use postId method');
+            throw new ModelException('setOpt can\'t be empty OR Field must be a string, if you need to set post id, you must use postId method');
 
 
         if (is_array($value) or is_string($value) or is_numeric($value))

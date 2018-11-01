@@ -35,7 +35,7 @@ class ResponseCollection implements \IteratorAggregate, \Countable, \Serializabl
     public function __get($name)
     {
         if (!isset($this->response->{$name}))
-            throw new ModelException('Property not found, you can find all available property in dd($completed->response); ');
+            throw new ModelException('Property not found, you can find all available properties in dd($completed->response); ');
 
             return $this->response->{$name};
     }
@@ -110,7 +110,7 @@ class ResponseCollection implements \IteratorAggregate, \Countable, \Serializabl
     }
 
     /**
-     * You can use this method for getting status for request
+     * You can use this method for getting status of request
      *
      * @return bool
      */

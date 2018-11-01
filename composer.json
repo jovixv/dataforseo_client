@@ -1,6 +1,6 @@
 {
     "name": "jovixv/dataforseo_client",
-    "description": "A PHP wrapper for using Diffbot's API",
+    "description": "A PHP wrapper for using DataForSEO API",
     "keywords": [
         "dataforseo", "api", "seo", "dataforseo client", "seo tools", "client for dataforseo", "php wrapper dataforseo", "dataforseo api", "DFS API", "api seo", "seo api php", "google search volume php"
     ],

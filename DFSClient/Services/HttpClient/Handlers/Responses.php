@@ -39,7 +39,7 @@ class Responses
     }
 
     /*
-     * getters for mesage
+     * getters for message
      */
     public function getErrorMessage(){
         return $this->errorMessage;

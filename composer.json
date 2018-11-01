@@ -14,7 +14,7 @@
             "role": "Developer"
         }
     ],
-    "minimum-stability": "v1.0.0-alpha",
+    "minimum-stability": "alpha",
     "require": {
         "guzzlehttp/guzzle": "^6.3",
         "php" : "^7.1"

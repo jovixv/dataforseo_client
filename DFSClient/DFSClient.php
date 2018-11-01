@@ -3,9 +3,7 @@
 
 namespace DFSClient;
 
-
 use \DFSClient\bootstrap\Application;
-use DFSClient\Models\RankedKeywordFinder;
 
 
 class DFSClient
@@ -17,13 +15,27 @@ class DFSClient
 
     public $app;
 
-    public function __construct()
+    /**
+     * DFSClient constructor.
+     * @param string $login
+     * @param string $password
+     * @param bool $timeout
+     * @param bool $apiVersion
+     * @param bool $url
+     */
+    public function __construct(string $login, string $password, $timeout = false, $apiVersion = false, $url=false)
     {
+
+        $config = include 'config.php';
         $this->app = Application::getInstance();
 
-        $this->app->config = include 'config.php';
+        $config['timeoutForEachRequests'] = $timeout     ?? $config['timeoutForEachRequests'];
+        $config['apiVersion']             = $apiVersion  ?? $config['apiVersion'];
+        $config['url']                    = $url         ?? $config['url'];
 
-        $this->bindings();
+        $this->app->config = $config;
+
+        //$this->bindings(); it will be available for version 1.0.0-stable;
     }
 
     /**

@@ -1,0 +1,30 @@
+{
+    "name": "jovixv/dataforseo_client",
+    "description": "A PHP wrapper for using Diffbot's API",
+    "keywords": [
+        "dataforseo", "api", "seo", "dataforseo client", "seo tools", "client for dataforseo", "php wrapper dataforseo", "dataforseo api", "DFS API", "api seo", "seo api php", "google search volume php"
+    ],
+    "homepage": "https://github.com/jovixv/dataforseo_client",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vitaliy Lyabakh",
+            "email": "igrolan@gmail.com",
+            "homepage": "https://dataforseo.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "php" : "^7.1"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "DFSClient\\": "DFSClient/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.1"
+    }
+}

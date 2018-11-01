@@ -42,17 +42,17 @@ abstract class AbstractModel
     protected $url          = null;
 
     /**
-     * @var int|null $postId PostId need for some request, for more information look to example or to DFSApi
+     * @var int|null $postId PostId is needed for a request, for more information check an example or DFSApi
      */
     protected $postId      = null;
 
     /**
-     * @var null $statusCode At now this field not working
+     * @var null $statusCode This field is not working at the moment 
      */
     public $statusCode;
 
     /**
-     * @var null $statusMessage At now this field not working
+     * @var null $statusMessage This field is not working at the moment 
      */
     public $statusMessage;
 
@@ -63,12 +63,12 @@ abstract class AbstractModel
     protected $headers = [];
 
     /**
-     * @var null $requiredField At now this field not working
+     * @var null $requiredField This field is not working at the moment
      */
     protected $requiredField;
 
     /**
-     * @var null $requiredField At now this field not working
+     * @var null $requiredField This field is not working at the moment
      */
     protected $mainData;
 
@@ -83,26 +83,26 @@ abstract class AbstractModel
     protected $method;
 
     /**
-     * This variable is required for all extended Class from AbstractModel
+     * This variable is required for all extended Classes from AbstractModel
      *
-     * @var null|string $requestToFunction It is name, when you want send request to api, use this param as api point, example: cmn_user
+     * @var null|string $requestToFunction It is a name, when you want to send a request to api, use this param as an api endpoint, example: cmn_user
      */
     protected $requestToFunction = null;
 
     /**
-     * This variable is required for all extended Class from AbstractModel
+     * This variable is required for all extended Classes from AbstractModel
      * example for path: results->0->related
      *
      * results - is object link from DFSResponse
      * 0       - is Index of array
      * related - is object link containing main data
      *
-     * @var null|string $pathToMainData It is system variable, it is contain path to main data from response and create iterable(IteratorAggregator) response.
+     * @var null|string $pathToMainData It is a system variable, it contains a path to main data from response and creates iterable(IteratorAggregator) response.
      */
     protected $pathToMainData     = null;
 
     /**
-     * @var bool $isSupportedMerge If request is support postId
+     * @var bool $isSupportedMerge If payload contains postId
      */
     protected $isSupportedMerge = false;
 
@@ -188,7 +188,7 @@ abstract class AbstractModel
 
 
     /**
-     * Array contain this objects
+     * Array contains this objects
      *
      * @param iterable $pool
      */
@@ -205,7 +205,7 @@ abstract class AbstractModel
 
          foreach ($pool as $key=>$val ){
           if (!$val->isSupportedMerge)
-              throw new ModelException('This model does not supported merge, supported model must has post id ');
+              throw new ModelException('This model does not support merge, supported models must contain post id ');
 
              $payLoad           = $val->queryBuilder->getPayload();
              $header            = $val->headers;
@@ -230,19 +230,19 @@ abstract class AbstractModel
          $arr            = &$finishedPayload;
 
          if (!$requestToFunction )
-             throw new ModelException('requestFunction can not be null, set this field in your model: '.get_called_class());
+             throw new ModelException('requestFunction cannot be a null, set this field in your model: '.get_called_class());
 
          $res = $http->sendSingleRequest($method, $requestToFunction, $arr );
          return new ResponseCollection($res, $pathToMainData);
      }
 
-     /*----------------------------------------------------------|
-      | Mutator's : it need for building custom's request to API |
-      |                                                          |
-     *-----------------------------------------------------------/
+     /*-----------------------------------------------------------------|
+      | Mutator's : it is required for building a custom request to API |
+      |                                                                 |
+     *------------------------------------------------------------------/
 
     /**
-     * This function rewrite default method for request (POST, GET, etc)
+     * This function rewrites a default method for request (POST, GET, etc)
      *
      * @param $newMethod
      */
@@ -253,7 +253,7 @@ abstract class AbstractModel
      }
 
     /**
-     *  This function rewrite default timeout from config for request (default 10 - config.php)
+     *  This function rewrites a default timeout from the config for request (default 10 - config.php)
      *
      * @param $newTimeout
      */

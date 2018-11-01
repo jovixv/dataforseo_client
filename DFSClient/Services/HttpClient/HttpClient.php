@@ -27,7 +27,7 @@ class HttpClient implements HttpContract
     /**
      *
      * Create a new HttpClient instance
-     * This Class use Guzzle/Http
+     * This Class is using Guzzle/Http
      *
      * HttpClient constructor.
      * @param $base_url
@@ -74,9 +74,9 @@ class HttpClient implements HttpContract
 
             $checkError = json_decode($content,false, 512, JSON_BIGINT_AS_STRING);
 
-            // check for existing error in response. Some API return 200 ok, but error exist in response body
+            // check for existing errors in response. Some APIs return 200 ok, but an error may exist in the response's body
             if (isset($checkError->error)){
-                $result = new Responses(false, 'DFS api returned an error, for more information look to $completed->errorResponse ', $checkError, null);
+                $result = new Responses(false, 'DFS api returned an error, for more information check $completed->errorResponse ', $checkError, null);
 
             }else{
                 $result = new Responses(true, null, $content,
@@ -120,7 +120,7 @@ class HttpClient implements HttpContract
 
         $results  = [];
 
-        // create task for Promise
+        // creating task for Promise
         foreach ($args as $key=>$arg){
             // checking variable from args array
             if (isset($arg['method']) AND isset($arg['url']) )

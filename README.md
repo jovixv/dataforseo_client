@@ -1,29 +1,25 @@
 ![](https://image-store.slidesharecdn.com/01de2865-8522-4b09-bcfe-6edc4af50049-original.png)
 
-The Dingo API package is meant to provide you, the developer, with a set of tools to help you easily and quickly build your own API. While the goal of this package is to remain as flexible as possible it still won't cover all situations and solve all problems.
+DataForSEO Client is intended to provide you, as a developer, with a tool for getting necessary data without having to worry about how to make a request and process a response - all that has already been done.
 
-[![Build Status](https://img.shields.io/travis/dingo/api/master.svg?style=flat-square)](https://travis-ci.org/dingo/api)
-[![License](https://img.shields.io/packagist/l/dingo/api.svg?style=flat-square)](LICENSE)
-[![Development Version](https://img.shields.io/packagist/vpre/dingo/api.svg?style=flat-square)](https://packagist.org/packages/dingo/api)
-[![Monthly Installs](https://img.shields.io/packagist/dm/dingo/api.svg?style=flat-square)](https://packagist.org/packages/dingo/api)
+[![GitHub issues](https://img.shields.io/github/issues/jovixv/dataforseo_client.svg)](https://github.com/jovixv/dataforseo_client/issues)
+[![GitHub license](https://img.shields.io/github/license/jovixv/dataforseo_client.svg)](https://github.com/jovixv/dataforseo_client)
+[![Development Version](https://img.shields.io/github/license/jovixv/dataforseo_client.svg)](https://packagist.org/packages/jovixv/dataforseo_client)
 [![StyleCI](https://github.styleci.io/repos/155680687/shield?branch=master)]
 
 ## Features
 
 This package provides tools for the following, and more:
 
-- Content Negotiation
-- Multiple Authentication Adapters
-- API Versioning
-- Rate Limiting
+- Models for sending requests to all API endpoints.
+- Convenient builder of requests.
+- Concise program processing of responses.
+- Errors and exceptions handling.
 - Response Transformers and Formatters
-- Error and Exception Handling
-- Internal Requests
-- API Blueprint Documentation
 
 ## Documentation
 
-Please refer to our extensive [Wiki documentation](https://github.com/dingo/api/wiki) for more information.
+Please refer to our extensive [Wiki documentation](https://github.com/dataforseo_client/api/wiki) for more information.
 
 ## Support
 
@@ -31,4 +27,4 @@ For answers you may not find in the Wiki, avoid posting issues. Feel free to ask
 
 ## License
 
-This package is licensed under the [MIT](http://opensource.org/licenses/BSD-3-Clause).
+This package is licensed under the [MIT](http://opensource.org/licenses/MIT).

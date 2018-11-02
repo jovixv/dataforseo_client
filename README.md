@@ -4,7 +4,7 @@ DataForSEO Client is intended to provide you, as a developer, with a tool for ge
 
 [![GitHub issues](https://img.shields.io/github/issues/jovixv/dataforseo_client.svg)](https://github.com/jovixv/dataforseo_client/issues)
 [![GitHub license](https://img.shields.io/github/license/jovixv/dataforseo_client.svg)](https://github.com/jovixv/dataforseo_client)
-[![Development Version](https://img.shields.io/github/license/jovixv/dataforseo_client.svg)](https://packagist.org/packages/jovixv/dataforseo_client)
+[![Development version](https://img.shields.io/github/issues/jovixv/dataforseo_client.svg)](https://packagist.org/packages/jovixv/dataforseo_client)
 [![StyleCI](https://github.styleci.io/repos/155680687/shield?branch=master)]
 
 ## Features

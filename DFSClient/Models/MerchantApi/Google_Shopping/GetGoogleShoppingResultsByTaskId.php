@@ -7,7 +7,7 @@ use DFSClient\Models\AbstractModel;
 class GetGoogleShoppingResultsByTaskId extends AbstractModel
 {
     protected $requestToFunction = 'merchant_google_shopping_tasks_get';
-    protected $pathToMainData    = 'results';
-    protected $method            = 'GET';
-    protected $isSupportedMerge  =  false;
+    protected $pathToMainData = 'results';
+    protected $method = 'GET';
+    protected $isSupportedMerge = false;
 }

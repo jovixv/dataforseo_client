@@ -4,12 +4,11 @@ namespace DFSClient\bootstrap;
 
 class Application
 {
-
     private static $instance = [];
 
-    protected      $bindings = [];
+    protected $bindings = [];
 
-    protected      $models   = [];
+    protected $models = [];
 
     public $config;
 
@@ -23,7 +22,7 @@ class Application
      */
     public function __wakeup()
     {
-        throw new \Exception("Cannot unserialize a DFSClient.");
+        throw new \Exception('Cannot unserialize a DFSClient.');
     }
 
     protected function __clone()
@@ -31,32 +30,36 @@ class Application
         // TODO: Implement __invoke() method.
     }
 
-    public function init(){
-
+    public function init()
+    {
     }
 
-    public function bind($object){
+    public function bind($object)
+    {
         //$this->bindings[]
     }
 
-    public function bindModel($name, $class){
-        $this->models[str_replace(" ","",$name)] = $class;
+    public function bindModel($name, $class)
+    {
+        $this->models[str_replace(' ', '', $name)] = $class;
     }
 
-    public static function getInstance(){
-
+    public static function getInstance()
+    {
         $class = get_called_class();
 
-        if (!isset(self::$instance[$class]))
-            return new static;
+        if (!isset(self::$instance[$class])) {
+            return new static();
+        }
 
         return self::$instance[$class];
     }
 
-
-    public function getModel($name){
-        if (!isset($this->models[$name]))
+    public function getModel($name)
+    {
+        if (!isset($this->models[$name])) {
             return false;
+        }
 
         return $this->models[$name];
     }

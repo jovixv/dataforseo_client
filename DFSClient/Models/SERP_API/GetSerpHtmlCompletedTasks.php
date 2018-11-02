@@ -7,7 +7,7 @@ use DFSClient\Models\AbstractModel;
 class GetSerpHtmlCompletedTasks extends AbstractModel
 {
     protected $requestToFunction = 'srp_html_tasks_get';
-    protected $pathToMainData    = 'results';
-    protected $method            = 'GET';
-    protected $isSupportedMerge  =  false;
+    protected $pathToMainData = 'results';
+    protected $method = 'GET';
+    protected $isSupportedMerge = false;
 }

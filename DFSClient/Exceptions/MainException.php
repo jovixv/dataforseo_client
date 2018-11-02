@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: Admin
  * Date: 24.10.2018
- * Time: 12:52
+ * Time: 12:52.
  */
 
 namespace DFSClient\Exceptions;
-
 
 class MainException extends \Exception
 {
@@ -20,9 +19,10 @@ class MainException extends \Exception
         $arr['error']['file'] = $this->file;
         $arr['error']['line'] = $this->line;
         $arr['error']['prev'] = $this->getPrevious();
-        $arr['error']['trace']= $this->getTrace();
+        $arr['error']['trace'] = $this->getTrace();
 
         dump($arr);
+
         return parent::__toString();
     }
 }

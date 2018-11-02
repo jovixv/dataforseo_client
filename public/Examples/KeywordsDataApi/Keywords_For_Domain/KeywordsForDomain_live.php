@@ -1,4 +1,5 @@
 <?php
+
 require_once '../../../../vendor/autoload.php';
 
 use DFSClient\DFSClient;
@@ -7,11 +8,10 @@ use DFSClient\Models\KeywordsDataApi\Keywords_For_Domain\KeywordsForDomainLive;
 $DFSClient = new DFSClient();
 $model = new KeywordsForDomainLive();
 
-$domain      = 'dataforseo.com';
-$lang        = 'en';
+$domain = 'dataforseo.com';
+$lang = 'en';
 $countryCode = 'us';
-$sortBy      = 'relevance';
-
+$sortBy = 'relevance';
 
 $completed = $model->setExtraToRequestUrl($domain)
     ->setExtraToRequestUrl($countryCode)
@@ -20,14 +20,15 @@ $completed = $model->setExtraToRequestUrl($domain)
     ->setExtraToRequestUrl($sortBy)
     ->get();
 
-if (!$completed->isSuccessful())
+if (!$completed->isSuccessful()) {
     dd($completed);
+}
 
 // you can call property as described below
-echo 'status: '       .$completed->status        ."<br>";
-echo 'task_id: '      .$completed->task_id       ."<br>";
-echo 'results_time: ' .$completed->results_time  ."<br>";
-echo 'results_count: '.$completed->results_count ."<br>";
+echo 'status: '.$completed->status.'<br>';
+echo 'task_id: '.$completed->task_id.'<br>';
+echo 'results_time: '.$completed->results_time.'<br>';
+echo 'results_count: '.$completed->results_count.'<br>';
 
 foreach ($completed as $key=>$item) {
     dump($item);

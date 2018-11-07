@@ -2,7 +2,7 @@
 require_once '../../../../vendor/autoload.php';
 
 use DFSClient\DFSClient;
-use DFSClient\Models\KeywordsDataApi\Search_Volume_for_Keyword\SearchVolumeForKeywordGetCompletedTask as SVCompletedTask;
+use DFSClient\Models\KeywordsDataApi\Search_Volume_for_Keyword\SearchVolumeForKeywordGetCompletedTasks as SVCompletedTask;
 
 
 $DFSClient = new DFSClient(); // init DFSClient, at now it is required.

@@ -57,7 +57,7 @@ class DFSClient
         $this->app->bindModel('ranked_keyword','\\DFSClient\\Models\\RankedKeywordFinder');
         $this->app->bindModel('kwrd_sv', '\\DFSClient\\Models\\KeywordsDataApi\\Search_Volume_for_Keyword\\SearchVolumeForKeywordLive');
         $this->app->bindModel('kwrd_sv_tasks_post', '\\DFSClient\\Models\\KeywordsDataApi\\Search_Volume_for_Keyword\\SearchVolumeForKeywordSetTask');
-        $this->app->bindModel('kwrd_sv_tasks_get', '\\DFSClient\\Models\\KeywordsDataApi\\Search_Volume_for_Keyword\\SearchVolumeForKeywordGetCompletedTask');
+        $this->app->bindModel('kwrd_sv_tasks_get', '\\DFSClient\\Models\\KeywordsDataApi\\Search_Volume_for_Keyword\\SearchVolumeForKeywordGetCompletedTasks');
         //$this->app->bindModel();
     }
 

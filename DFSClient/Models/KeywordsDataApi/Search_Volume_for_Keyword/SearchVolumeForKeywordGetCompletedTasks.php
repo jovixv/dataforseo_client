@@ -6,7 +6,7 @@ namespace DFSClient\Models\KeywordsDataApi\Search_Volume_for_Keyword;
 
 use DFSClient\Models\AbstractModel;
 
-class SearchVolumeForKeywordGetCompletedTask extends AbstractModel
+class SearchVolumeForKeywordGetCompletedTasks extends AbstractModel
 {
     protected $requestToFunction = 'kwrd_sv_tasks_get';
     protected $pathToMainData    = 'results';

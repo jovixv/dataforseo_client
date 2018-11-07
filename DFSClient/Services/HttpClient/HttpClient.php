@@ -2,20 +2,15 @@
 
 namespace DFSClient\Services\HttpClient;
 
-
 use DFSClient\Services\HttpClient\Contracts\HttpContract;
-
 use DFSClient\Services\HttpClient\Handlers\Responses;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\BadResponseException;
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise;
 
-
 class HttpClient implements HttpContract
 {
-
     /*
      * init new variable impemented Guzzle/
      */
@@ -23,13 +18,12 @@ class HttpClient implements HttpContract
 
     public $typeResponse = '.gzip';
 
-
     /**
-     *
      * Create a new HttpClient instance
-     * This Class use Guzzle/Http
+     * This Class is using Guzzle/Http.
      *
      * HttpClient constructor.
+     *
      * @param $base_url
      * @param $timeout
      * @param $login
@@ -39,22 +33,19 @@ class HttpClient implements HttpContract
      */
     public function __construct($base_url, $apiVersion, $timeout, $login, $password, $typeResponse = null)
     {
-
         $this->typeResponse = $typeResponse;
         $this->client = new GuzzleClient([
             // if env is exist use env variable,else ''
-            'base_uri'  => ( ($base_url) ? $base_url : $GLOBALS['DFSClient']->app->config['url'])
-                         . ( ($apiVersion) ? $apiVersion : $GLOBALS['DFSClient']->app->config['apiVersion'] ),
+            'base_uri'  => (($base_url) ? $base_url : $GLOBALS['DFSClient']->app->config['url'])
+                         .(($apiVersion) ? $apiVersion : $GLOBALS['DFSClient']->app->config['apiVersion']),
 
-            'timeout'   => ($timeout)  ? $timeout  : $GLOBALS['DFSClient']->app->config['timeoutForEachRequests'],
+            'timeout'   => ($timeout) ? $timeout : $GLOBALS['DFSClient']->app->config['timeoutForEachRequests'],
             'auth'      => [
-                ($login) ? $login      : $GLOBALS['DFSClient']->app->config['DATAFORSEO_LOGIN'],
-                ($login) ? $password   : $GLOBALS['DFSClient']->app->config['DATAFORSEO_PASSWORD']
+                ($login) ? $login : $GLOBALS['DFSClient']->app->config['DATAFORSEO_LOGIN'],
+                ($login) ? $password : $GLOBALS['DFSClient']->app->config['DATAFORSEO_PASSWORD'],
             ],
         ]);
     }
-
-
 
     /*
      * @param string $method
@@ -63,35 +54,33 @@ class HttpClient implements HttpContract
      *
      * @return \Handlers\Responses
      */
-    public function sendSingleRequest($method,$url, $params): Responses {
-
-        $result  = null;
+    public function sendSingleRequest($method, $url, $params): Responses
+    {
+        $result = null;
         $content = null;
 
-        try{
+        try {
             $send = $this->client->request($method, $url.$this->typeResponse, $params);
             $content = $send->getBody()->getContents();
 
-            $checkError = json_decode($content,false, 512, JSON_BIGINT_AS_STRING);
+            $checkError = json_decode($content, false, 512, JSON_BIGINT_AS_STRING);
 
-            // check for existing error in response. Some API return 200 ok, but error exist in response body
-            if (isset($checkError->error)){
-                $result = new Responses(false, 'DFS api returned an error, for more information look to $completed->errorResponse ', $checkError, null);
-
-            }else{
+            // check for existing errors in response. Some APIs return 200 ok, but an error may exist in the response's body
+            if (isset($checkError->error)) {
+                $result = new Responses(false, 'DFS api returned an error, for more information check $completed->errorResponse ', $checkError, null);
+            } else {
                 $result = new Responses(true, null, $content,
                     $send->getHeaders()
                 );
             }
-
-        }catch (BadResponseException $e){
-
+        } catch (BadResponseException $e) {
             $result = new Responses(false, $e->getMessage(), $e->getResponse()->getBody()->getContents(), null);
-        }catch (GuzzleException $er){
+        } catch (GuzzleException $er) {
             $result = new Responses(false, $er->getMessage(), json_encode(['message'=>'timeout error, you must change timeout limit in your config file or model']), null);
         }
 
         unset($content);
+
         return $result;
     }
 
@@ -113,41 +102,39 @@ class HttpClient implements HttpContract
      *
      * @return array
      */
-    public function sendAsyncRequests(array $args, $someData):array {
+    public function sendAsyncRequests(array $args, $someData):array
+    {
 
         // array with requests
         $promises = [];
 
-        $results  = [];
+        $results = [];
 
-        // create task for Promise
-        foreach ($args as $key=>$arg){
+        // creating task for Promise
+        foreach ($args as $key=>$arg) {
             // checking variable from args array
-            if (isset($arg['method']) AND isset($arg['url']) )
-                $promises[$key] = $this->client->requestAsync($arg['method'], $arg['url'].$this->typeResponse, (isset($arg['params']))?$arg['params']:[]);
+            if (isset($arg['method']) and isset($arg['url'])) {
+                $promises[$key] = $this->client->requestAsync($arg['method'], $arg['url'].$this->typeResponse, (isset($arg['params'])) ? $arg['params'] : []);
+            }
         }
 
         // waiting and processing requests
         $waitingFinish = Promise\settle($promises)->wait();
 
         //creating results array
-        foreach ($waitingFinish as $key=>$finished){
+        foreach ($waitingFinish as $key=>$finished) {
             // if request is ok
-           if ($finished['state'] == 'fulfilled' AND isset($finished['value']) ){
-               // init and add new object to results
-               $results[$key] = new Responses(true, null, $finished['value']->getBody()->getContents(),
+            if ($finished['state'] == 'fulfilled' and isset($finished['value'])) {
+                // init and add new object to results
+                $results[$key] = new Responses(true, null, $finished['value']->getBody()->getContents(),
                    $finished['value']->getHeaders()
                );
-
-           }else{
-               // init and add new object to results
-               $results[$key] = new Responses(false, $finished['reason']->getMessage(), null, null);
-           }
-
+            } else {
+                // init and add new object to results
+                $results[$key] = new Responses(false, $finished['reason']->getMessage(), null, null);
+            }
         }
 
         return $results;
-
     }
-
 }

@@ -1,30 +1,31 @@
 <?php
+
 require_once '../../../../vendor/autoload.php';
 
 use DFSClient\DFSClient;
-$DFSClient = new DFSClient();
 
+$DFSClient = new DFSClient();
 
 $model = $DFSClient->kwrd_sv; // kwrd_sv  - is model, we do request to this apiPoint;
 
 // it is request to api, when you write SETOPT working "magic method __call", also method get will return Iterable object "ResponseCollection"
 // method get() will be run request
-$completed = $model::setOpt('key','call of duty')
-    ->setOpt('loc_name_canonical','United States')
+$completed = $model::setOpt('key', 'call of duty')
+    ->setOpt('loc_name_canonical', 'United States')
     ->setOpt('language', 'en')
     ->get();
 
-if (!$completed->isSuccessful())
+if (!$completed->isSuccessful()) {
     dd($completed);
-
+}
 
 // you can call property as described below
-echo 'status: '       .$completed->status        ."<br>";
-echo 'task_id: '      .$completed->task_id       ."<br>";
-echo 'results_time: ' .$completed->results_time  ."<br>";
-echo 'results_count: '.$completed->results_count ."<br>";
+echo 'status: '.$completed->status.'<br>';
+echo 'task_id: '.$completed->task_id.'<br>';
+echo 'results_time: '.$completed->results_time.'<br>';
+echo 'results_count: '.$completed->results_count.'<br>';
 
-foreach($completed as $key=>$result){
+foreach ($completed as $key=>$result) {
     dump($result);
 }
 
@@ -34,26 +35,25 @@ foreach($completed as $key=>$result){
 *----------------------------------------------------------------------------------------------------------------------*/
 
 // you can setPostId() for each pool, but it is not required for all apiPoint
-for($i=0; $i < 3; $i++){
-  $pool[] = $model::setOpt('key', 'seo '.$i)
-     ->setOpt('loc_name_canonical','United States')
+for ($i = 0; $i < 3; $i++) {
+    $pool[] = $model::setOpt('key', 'seo '.$i)
+     ->setOpt('loc_name_canonical', 'United States')
      ->setOpt('language', 'en');
-     //->setPostId($i)
+    //->setPostId($i)
 }
 
 $completed = $model::getAfterMerge($pool); // this method handle your pool, and do request.
 
-if (!$completed->isSuccessful())
+if (!$completed->isSuccessful()) {
     dd($completed);
-
+}
 
 // you can call property as described below
-echo 'status: '       .$completed->status        ."<br>";
-echo 'task_id: '      .$completed->task_id       ."<br>";
-echo 'results_time: ' .$completed->results_time  ."<br>";
-echo 'results_count: '.$completed->results_count ."<br>";
+echo 'status: '.$completed->status.'<br>';
+echo 'task_id: '.$completed->task_id.'<br>';
+echo 'results_time: '.$completed->results_time.'<br>';
+echo 'results_count: '.$completed->results_count.'<br>';
 
-
-foreach($completed as $k=>$v){
-   dump($v);
+foreach ($completed as $k=>$v) {
+    dump($v);
 }

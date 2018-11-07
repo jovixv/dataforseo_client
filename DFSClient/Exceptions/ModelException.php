@@ -2,9 +2,6 @@
 
 namespace DFSClient\Exceptions;
 
-
-class ModelException extends MainException{
-
-
-
+class ModelException extends MainException
+{
 }

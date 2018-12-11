@@ -10,7 +10,7 @@ class DfsServiceProvider extends \Illuminate\Support\ServiceProvider
 
     public function boot()
     {
-        $this->publishes([__DIR__.'../dfs_config.php' => config_path('dfs_config.php')]);
+        $this->publishes([__DIR__.'/../dfs_config.php' => config_path('dfs_config.php')]);
 
     }
 

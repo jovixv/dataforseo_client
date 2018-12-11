@@ -49,7 +49,7 @@ class Application
         $class = get_called_class();
 
         if (!isset(self::$instance[$class])) {
-            return new static();
+            self::$instance[$class] = new static();
         }
 
         return self::$instance[$class];
@@ -62,5 +62,16 @@ class Application
         }
 
         return $this->models[$name];
+    }
+
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    public function setConfig($config)
+    {
+        $this->config = $config;
+        //dd($this->config);
     }
 }

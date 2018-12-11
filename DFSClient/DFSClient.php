@@ -22,8 +22,8 @@ class DFSClient
      */
     public function __construct(string $login, string $password, $timeout = null, $apiVersion = null, $url = null)
     {
-        $config = include 'config.php';
-        $this->app = Application::getInstance();
+        $config = config( 'dfs_config');
+
 
         $config['DATAFORSEO_LOGIN'] = $login ?? $config['DATAFORSEO_LOGIN'];
         $config['DATAFORSEO_PASSWORD'] = $password ?? $config['DATAFORSEO_PASSWORD'];
@@ -31,7 +31,7 @@ class DFSClient
         $config['apiVersion'] = $apiVersion ?? $config['apiVersion'];
         $config['url'] = $url ?? $config['url'];
 
-        $this->app->config = $config;
+        Application::getInstance()->setConfig($config);
 
         //$this->bindings(); it will be available for version 1.0.0-stable;
     }

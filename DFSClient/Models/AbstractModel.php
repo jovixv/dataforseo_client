@@ -2,7 +2,9 @@
 
 namespace DFSClient\Models;
 
+use DFSClient\DFSClient;
 use DFSClient\Exceptions\ModelException;
+use DFSClient\bootstrap\Application;
 use DFSClient\Services\HttpClient\HttpClient;
 
 /**
@@ -116,7 +118,7 @@ abstract class AbstractModel
 
     public function __construct()
     {
-        $this->headers = $GLOBALS['DFSClient']->app->config['headers'];
+        $this->headers = Application::getInstance()->getConfig()['headers'];
         $this->queryBuilder = new Builder();
     }
 
@@ -167,7 +169,7 @@ abstract class AbstractModel
         $arr = $this->queryBuilder->getPayload();
         $arr['headers'] = $this->headers;
 
-        if (!isset($GLOBALS['DFSClient'])) {
+        if (!Application::getInstance()) {
             dd('DFSClient was not init, add to your code: $DFSClient = new DFSClient() ');
         }
 

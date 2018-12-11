@@ -28,6 +28,14 @@
         "psr-4": {
             "DFSClient\\": "DFSClient/"
         }
+    },
+
+    "extra": {
+        "laravel":{
+            "providers":[
+                "DFSClient\\Provider\\DfsServiceProvider"
+            ]
+        }
     }
 
 }

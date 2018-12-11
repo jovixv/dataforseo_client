@@ -1,7 +1,7 @@
 <?php
 
 namespace DFSClient\Models;
-
+use DFSClient\bootstrap\Application;
 use DFSClient\Exceptions\ModelException;
 
 class Builder
@@ -14,7 +14,7 @@ class Builder
 
     public function __construct()
     {
-        $this->payload = $GLOBALS['DFSClient']->app->config['payloadData'];
+        $this->payload = Application::getInstance()->getConfig()['payloadData'];
     }
 
     /**

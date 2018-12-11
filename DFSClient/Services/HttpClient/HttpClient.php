@@ -5,6 +5,7 @@ namespace DFSClient\Services\HttpClient;
 use DFSClient\Services\HttpClient\Contracts\HttpContract;
 use DFSClient\Services\HttpClient\Handlers\Responses;
 use GuzzleHttp\Client as GuzzleClient;
+use DFSClient\bootstrap\Application;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise;
@@ -34,15 +35,16 @@ class HttpClient implements HttpContract
     public function __construct($base_url, $apiVersion, $timeout, $login, $password, $typeResponse = null)
     {
         $this->typeResponse = $typeResponse;
+        $config = Application::getInstance()->getConfig();
         $this->client = new GuzzleClient([
             // if env is exist use env variable,else ''
-            'base_uri'  => (($base_url) ? $base_url : $GLOBALS['DFSClient']->app->config['url'])
-                         .(($apiVersion) ? $apiVersion : $GLOBALS['DFSClient']->app->config['apiVersion']),
+            'base_uri'  => (($base_url) ? $base_url : $config['url'])
+                         .(($apiVersion) ? $apiVersion : $config['apiVersion']),
 
-            'timeout'   => ($timeout) ? $timeout : $GLOBALS['DFSClient']->app->config['timeoutForEachRequests'],
+            'timeout'   => ($timeout) ? $timeout : $config['timeoutForEachRequests'],
             'auth'      => [
-                ($login) ? $login : $GLOBALS['DFSClient']->app->config['DATAFORSEO_LOGIN'],
-                ($login) ? $password : $GLOBALS['DFSClient']->app->config['DATAFORSEO_PASSWORD'],
+                ($login) ? $login : $config['DATAFORSEO_LOGIN'],
+                ($login) ? $password : $config['DATAFORSEO_PASSWORD'],
             ],
         ]);
     }

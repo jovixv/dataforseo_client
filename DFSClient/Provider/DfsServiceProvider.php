@@ -16,7 +16,7 @@ class DfsServiceProvider extends \Illuminate\Support\ServiceProvider
 
     public function register()
     {
-        $this->app->singleton(DFSContract::class, function($app){
+        $this->app->singleton(DFSClient::class, function($app){
             $login = config('dfs_config.DATAFORSEO_LOGIN');
             $password = config('dfs_config.DATAFORSEO_PASSWORD');
             return new DFSClient($login, $password);

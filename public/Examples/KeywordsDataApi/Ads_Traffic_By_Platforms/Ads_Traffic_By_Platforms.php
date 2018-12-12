@@ -16,7 +16,7 @@ $completed = $model->setOpt('language', 'en')
     ->get();
 
 if (!$completed->isSuccessful()) {
-    dd($completed);
+    dump($completed); die;
 }
 
 // you can call property as described below

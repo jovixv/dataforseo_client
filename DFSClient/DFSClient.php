@@ -20,16 +20,16 @@ class DFSClient
      * @param bool   $apiVersion
      * @param bool   $url
      */
-    public function __construct(string $login, string $password, $timeout = null, $apiVersion = null, $url = null)
+    public function __construct( $login,  $password, $timeout = null, $apiVersion = null, $url = null)
     {
-        $config = config( 'dfs_config');
+        $config = include 'config.php';
 
 
-        $config['DATAFORSEO_LOGIN'] = $login ?? $config['DATAFORSEO_LOGIN'];
-        $config['DATAFORSEO_PASSWORD'] = $password ?? $config['DATAFORSEO_PASSWORD'];
-        $config['timeoutForEachRequests'] = $timeout ?? $config['timeoutForEachRequests'];
-        $config['apiVersion'] = $apiVersion ?? $config['apiVersion'];
-        $config['url'] = $url ?? $config['url'];
+        $config['DATAFORSEO_LOGIN'] = ($login) ? $login : $config['DATAFORSEO_LOGIN'];
+        $config['DATAFORSEO_PASSWORD'] = ($password) ? $password : $config['DATAFORSEO_PASSWORD'];
+        $config['timeoutForEachRequests'] = ($timeout) ? $timeout : $config['timeoutForEachRequests'];
+        $config['apiVersion'] = ($apiVersion) ? $apiVersion : $config['apiVersion'];
+        $config['url'] = ($url) ? $url : $config['url'];
 
         Application::getInstance()->setConfig($config);
 

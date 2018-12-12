@@ -2,9 +2,8 @@
 
 namespace DFSClient\Models;
 
-use DFSClient\DFSClient;
-use DFSClient\Exceptions\ModelException;
 use DFSClient\bootstrap\Application;
+use DFSClient\Exceptions\ModelException;
 use DFSClient\Services\HttpClient\HttpClient;
 
 /**
@@ -163,18 +162,18 @@ abstract class AbstractModel
      *
      * @return ResponseCollection]
      */
-    public function get():ResponseCollection
+    public function get()
     {
         $http = new HttpClient($this->url, $this->apiVersion, $this->timeOut, $this->DFSLogin, $this->DFSPassword);
         $arr = $this->queryBuilder->getPayload();
         $arr['headers'] = $this->headers;
 
         if (!Application::getInstance()) {
-            dd('DFSClient was not init, add to your code: $DFSClient = new DFSClient() ');
+            die('DFSClient was not init, add to your code: $DFSClient = new DFSClient() ');
         }
 
         if (!$this->requestToFunction) {
-            dd('requestFunction can not be null, set this field in your model: '.get_called_class());
+            die('requestFunction can not be null, set this field in your model: '.get_called_class());
         }
 
         if ($this->postId !== null) {
@@ -192,7 +191,7 @@ abstract class AbstractModel
      *
      * @param iterable $pool
      */
-    public static function getAfterMerge(iterable $pool):ResponseCollection
+    public static function getAfterMerge($pool)
     {
         $finishedPayload['json']['data'] = [];
         $header = [];

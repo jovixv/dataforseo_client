@@ -49,7 +49,7 @@ class Application
         $class = get_called_class();
 
         if (!isset(self::$instance[$class])) {
-            self::$instance[$class] = new static();
+            self::$instance[$class] =  new static();
         }
 
         return self::$instance[$class];
@@ -72,6 +72,5 @@ class Application
     public function setConfig($config)
     {
         $this->config = $config;
-        //dd($this->config);
     }
 }

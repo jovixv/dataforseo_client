@@ -2,10 +2,10 @@
 
 namespace DFSClient\Services\HttpClient;
 
+use DFSClient\bootstrap\Application;
 use DFSClient\Services\HttpClient\Contracts\HttpContract;
 use DFSClient\Services\HttpClient\Handlers\Responses;
 use GuzzleHttp\Client as GuzzleClient;
-use DFSClient\bootstrap\Application;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise;
@@ -34,8 +34,8 @@ class HttpClient implements HttpContract
      */
     public function __construct($base_url, $apiVersion, $timeout, $login, $password, $typeResponse = null)
     {
-        $this->typeResponse = $typeResponse;
         $config = Application::getInstance()->getConfig();
+        $this->typeResponse = $typeResponse;
         $this->client = new GuzzleClient([
             // if env is exist use env variable,else ''
             'base_uri'  => (($base_url) ? $base_url : $config['url'])
@@ -56,7 +56,7 @@ class HttpClient implements HttpContract
      *
      * @return \Handlers\Responses
      */
-    public function sendSingleRequest($method, $url, $params): Responses
+    public function sendSingleRequest($method, $url, $params)
     {
         $result = null;
         $content = null;
@@ -104,7 +104,7 @@ class HttpClient implements HttpContract
      *
      * @return array
      */
-    public function sendAsyncRequests(array $args, $someData):array
+    public function sendAsyncRequests($args, $someData)
     {
 
         // array with requests

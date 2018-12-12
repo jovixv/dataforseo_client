@@ -1,6 +1,7 @@
 <?php
 
 namespace DFSClient\Models;
+
 use DFSClient\bootstrap\Application;
 use DFSClient\Exceptions\ModelException;
 

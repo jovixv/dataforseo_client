@@ -15,7 +15,7 @@ class ResponseCollection implements \IteratorAggregate, \Countable, \Serializabl
     private $isSuccessful = false;
     protected $pathToMainData;
 
-    public function __construct(Responses $response, $pathToMainData = 'results')
+    public function __construct( $response, $pathToMainData = 'results')
     {
         if ($response->getStatus()) {
             $this->response = json_decode($response->getResponse(), null, 512, JSON_BIGINT_AS_STRING);
@@ -31,7 +31,7 @@ class ResponseCollection implements \IteratorAggregate, \Countable, \Serializabl
     public function __get($name)
     {
         if (!isset($this->response->{$name})) {
-            throw new ModelException('Property not found, you can find all available properties in dd($completed->response); ');
+            throw new ModelException('Property not found, you can find all available properties in die($completed->response); ');
         }
         return $this->response->{$name};
     }
@@ -95,7 +95,7 @@ class ResponseCollection implements \IteratorAggregate, \Countable, \Serializabl
         // TODO: Implement unserialize() method.
     }
 
-    private function setItemsFromPath($path):void
+    private function setItemsFromPath($path)
     {
         $paths = explode('->', $path);
         $returned = $this->response;

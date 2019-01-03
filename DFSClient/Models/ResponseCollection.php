@@ -39,6 +39,9 @@ class ResponseCollection implements \IteratorAggregate, \Countable, \Serializabl
     public function getIterator()
     {
         $this->setItemsFromPath($this->pathToMainData);
+       
+        if (is_string($this->items))
+            return new \ArrayIterator([]);
 
         return new \ArrayIterator($this->items);
     }

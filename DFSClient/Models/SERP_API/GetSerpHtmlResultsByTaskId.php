@@ -6,7 +6,7 @@ use DFSClient\Models\AbstractModel;
 
 class GetSerpHtmlResultsByTaskId extends AbstractModel
 {
-    protected $requestToFunction = 'srp_extra_tasks_get';
+    protected $requestToFunction = 'srp_html_tasks_get';
     protected $pathToMainData = 'results';
     protected $method = 'GET';
     protected $isSupportedMerge = false;

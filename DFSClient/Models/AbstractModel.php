@@ -235,6 +235,56 @@ abstract class AbstractModel
         return new ResponseCollection($res, $pathToMainData);
     }
 
+
+    public static function getAsyncAfterMerge(array $pool, $timeOut = 90) : ?array
+    {
+        if (count($pool) > 100)
+            throw new ModelException('Count of payload element, can not be great 100 elements');
+
+
+        $finishedPayload['json']['data'] = [];
+        $poolForRequest = [];
+        $settingsArray = [];
+        $resultsArray = [];
+
+        foreach ($pool as $key=>$val) {
+            $payLoad = $val->queryBuilder->getPayload();
+            $header = $val->headers;
+
+            $requestToFunction = $val->requestToFunction;
+            $method = $val->method;
+            $pathToMainData = $val->pathToMainData;
+
+            if ($val->postId === null) {
+                $finishedPayload['json']['data'][] = $payLoad['json']['data'][0];
+            } else {
+                $finishedPayload['json']['data'][$val->postId] = $payLoad['json']['data'][0];
+            }
+
+            $finishedPayload['headers'] = $header;
+
+            $poolForRequest[$key]['method'] = $val->method;
+            $poolForRequest[$key]['url'] = $val->requestToFunction;
+            $poolForRequest[$key]['params'] = $finishedPayload;
+            $settingsArray[$key]['pathToMainData'] = $val->pathToMainData;
+
+        }
+
+        $http = new HttpClient(null, null, $timeOut, null, null);
+
+        $res = $http->sendAsyncRequests($poolForRequest, null);
+
+        if (count($res) == 0)
+            return null;
+
+        foreach ($res as $key => $result) {
+            $resultsArray[$key] = new ResponseCollection($result, $settingsArray[$key]['pathToMainData']);
+        }
+
+        return $resultsArray;
+
+    }
+
     /*-----------------------------------------------------------------|
      | Mutator's : it is required for building a custom request to API |
      |                                                                 |

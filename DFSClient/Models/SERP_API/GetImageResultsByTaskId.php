@@ -11,4 +11,3 @@ class GetImageResultsByTaskId extends AbstractModel
     protected $method = 'GET';
     protected $isSupportedMerge = false;
 }
-

@@ -242,8 +242,6 @@ abstract class AbstractModel
         if (count($pool) > 100)
             throw new ModelException('Count of payload element, can not be great 100 elements');
 
-
-        $finishedPayload['json']['data'] = [];
         $poolForRequest = [];
         $settingsArray = [];
         $resultsArray = [];
@@ -257,7 +255,7 @@ abstract class AbstractModel
             $pathToMainData = $val->pathToMainData;
 
             if ($val->postId === null) {
-                $finishedPayload['json']['data'] = $payLoad['json']['data'][0];
+                $finishedPayload['json']['data'][] = $payLoad['json']['data'][0];
             } else {
                 $finishedPayload['json']['data'][$val->postId] = $payLoad['json']['data'][0];
             }

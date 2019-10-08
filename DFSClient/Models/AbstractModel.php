@@ -246,6 +246,7 @@ abstract class AbstractModel
         $resultsArray = [];
 
         foreach ($pool as $key=>$val) {
+            $finishedPayload['json']['data'] = null;
             $payLoad = $val->queryBuilder->getPayload();
             $header = $val->headers;
 

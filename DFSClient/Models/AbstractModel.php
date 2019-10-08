@@ -257,7 +257,7 @@ abstract class AbstractModel
             $pathToMainData = $val->pathToMainData;
 
             if ($val->postId === null) {
-                $finishedPayload['json']['data'][] = $payLoad['json']['data'][0];
+                $finishedPayload['json']['data'] = $payLoad['json']['data'][0];
             } else {
                 $finishedPayload['json']['data'][$val->postId] = $payLoad['json']['data'][0];
             }

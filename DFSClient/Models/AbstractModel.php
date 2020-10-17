@@ -201,7 +201,7 @@ abstract class AbstractModel
         $timeOut = null;
         $DFSLogin = null;
         $DFSPassword = null;
-        $requestFunction = null;
+        $requestToFunction = null;
 
         foreach ($pool as $key=>$val) {
             if (!$val->isSupportedMerge) {
